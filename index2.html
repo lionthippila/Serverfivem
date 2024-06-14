@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VINCENT</title>
+<link rel="icon" href="https://cdn.discordapp.com/attachments/1242461691111804991/1246073053339717683/OIP-removebg-preview.png?ex=665b0f76&is=6659bdf6&hm=d1fa57339d773912214aa902ecc6f01a930d299009254ca5257c47519723b94d&">
+<html>
+<head>
+<style>
+body {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  background-color: #f2f2f2;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 30px;
+  min-height: 100vh;
+}
+
+.go-to-html2-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.go-to-html2 {
+  width: 200px;
+  padding: 10px 16px;
+  background-color: #008CBA;
+  color: white;
+  text-align: center;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+}
+
+.go-to-html2:hover {
+  background-color: #005f73;
+}
+
+.server {
+  width: calc(30% - 20px);
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.server:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.15);
+}
+
+.server img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+}
+
+.server-content {
+  padding: 10px;
+}
+
+.server h3 {
+  margin: 10px 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.server p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #777;
+}
+
+.server button {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+}
+
+.server button:hover {
+  background-color: #45a049;
+}
+
+.actions {
+  margin-top: 10px;
+}
+</style>
+</head>
+<body>
+  <div class="go-to-html2-container">
+    <button class="go-to-html2" onclick="location.href='index.html'">GOTO SERVER TRAINING</button>
+  </div>
+
+  <div class="server">
+    <img src="icon/sakura.jpg" alt="Server Logo">
+    <h3>Sakura Town</h3>
+    <p>IP: connect 89.38.101.78</p>
+    <div class="actions">
+      <button onclick="connect('fivem://connect/89.38.101.78')">Connect</button>
+    </div>
+  </div>
+
+  <div class="server">
+    <img src="icon/highest.png" alt="Server Logo">
+    <h3>Highest Town</h3>
+    <p>IP: connect 103.167.193.79:30120</p>
+    <div class="actions">
+      <button onclick="connect('fivem://connect/103.167.193.79:30120')">Connect</button>
+    </div>
+  </div>
+  
+  <div class="server">
+    <img src="icon/athena.jpg" alt="Server Logo">
+    <h3>Athena Town</h3>
+    <p>IP: connect athenatown.hopto.org:30120</p>
+    <div class="actions">
+      <button onclick="connect('fivem://connect/athenatown.hopto.org:30120')">Connect</button>
+    </div>
+  </div>
+  
+  
+  <script>
+    function connect(url) {
+      window.location.href = url;
+    }
+    
+    function copyIP(ip) {
+      navigator.clipboard.writeText(ip);
+      alert('ที่อยู่ IP ' + ip + ' ถูกคัดลอกไปยังคลิปบอร์ดแล้ว');
+    }
+  </script>
+</body>
+</html>
