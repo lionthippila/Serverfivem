@@ -100,6 +100,26 @@ body {
 .actions {
   margin-top: 10px;
 }
+
+#player-count-4,
+#player-count-5,
+#player-count-6,
+#player-count-7,
+#player-count-8,
+#player-count-9,
+#player-count-10,
+#player-count-11 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  color: #FF5733;
+  font-size: 16px;
+  margin-top: 5px;
+  float: right;
+}
+
+
 </style>
 </head>
 <body>
@@ -111,6 +131,7 @@ body {
     <img src="star.png" alt="Server Logo">
     <h3>Star Server 1</h3>
     <p>IP: connect 103.91.190.189</p>
+    <p id="player-count-4">จำนวนผู้เล่น: กำลังโหลด...</p>
     <div class="actions">
       <button onclick="connect('fivem://connect/103.91.190.189')">Connect</button>
     </div>
@@ -120,6 +141,7 @@ body {
     <img src="star.png" alt="Server Logo">
     <h3>Star Server 2</h3>
     <p>IP: connect 103.91.190.68</p>
+    <p id="player-count-5">จำนวนผู้เล่น: กำลังโหลด...</p>
     <div class="actions">
       <button onclick="connect('fivem://connect/103.91.190.68')">Connect</button>
     </div>
@@ -129,6 +151,7 @@ body {
     <img src="star.png" alt="Server Logo">
     <h3>Star Server 3</h3>
     <p>IP: connect 103.208.27.132</p>
+    <p id="player-count-6">จำนวนผู้เล่น: กำลังโหลด...</p>
     <div class="actions">
       <button onclick="connect('fivem://connect/103.208.27.132')">Connect</button>
     </div>
@@ -138,6 +161,7 @@ body {
     <img src="star.png" alt="Server Logo">
     <h3>Star Server 4</h3>
     <p>IP: connect 103.91.190.230</p>
+    <p id="player-count-7">จำนวนผู้เล่น: กำลังโหลด...</p>
     <div class="actions">
       <button onclick="connect('fivem://connect/103.91.190.230')">Connect</button>
     </div>
@@ -147,6 +171,7 @@ body {
     <img src="star.png" alt="Server Logo">
     <h3>Star Server 5</h3>
     <p>IP: connect 103.208.27.17</p>
+    <p id="player-count-8">จำนวนผู้เล่น: กำลังโหลด...</p>
     <div class="actions">
       <button onclick="connect('fivem://connect/103.208.27.17')">Connect</button>
     </div>
@@ -156,6 +181,7 @@ body {
     <img src="star.png" alt="Server Logo">
     <h3>Star Server 6</h3>
     <p>IP: connect 103.208.27.176</p>
+    <p id="player-count-9">จำนวนผู้เล่น: กำลังโหลด...</p>
     <div class="actions">
       <button onclick="connect('fivem://connect/103.208.27.176')">Connect</button>
     </div>
@@ -165,6 +191,7 @@ body {
     <img src="star.png" alt="Server Logo">
     <h3>Star Server 7</h3>
     <p>IP: connect 103.91.190.164</p>
+    <p id="player-count-10">จำนวนผู้เล่น: กำลังโหลด...</p>
     <div class="actions">
       <button onclick="connect('fivem://connect/103.91.190.164')">Connect</button>
     </div>
@@ -174,20 +201,43 @@ body {
     <img src="star.png" alt="Server Logo">
     <h3>Star Server 8</h3>
     <p>IP: connect 103.91.190.171</p>
+    <p id="player-count-11">จำนวนผู้เล่น: กำลังโหลด...</p>
     <div class="actions">
       <button onclick="connect('fivem://connect/103.91.190.171')">Connect</button>
     </div>
   </div>
   
   <script>
-    function connect(url) {
-      window.location.href = url;
+    // Your JavaScript code here
+
+    async function fetchPlayerCount() {
+      const url = "https://server-nodejs-y8pw.onrender.com/players"; // Change to your proxy server URL
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        
+        // Update the player counts for each server
+        document.getElementById('player-count-4').textContent = `จำนวนผู้เล่น: ${data.source4Count}`;
+        document.getElementById('player-count-5').textContent = `จำนวนผู้เล่น: ${data.source5Count}`;
+        document.getElementById('player-count-6').textContent = `จำนวนผู้เล่น: ${data.source6Count}`;
+        document.getElementById('player-count-7').textContent = `จำนวนผู้เล่น: ${data.source7Count}`;
+        document.getElementById('player-count-8').textContent = `จำนวนผู้เล่น: ${data.source8Count}`;
+        document.getElementById('player-count-9').textContent = `จำนวนผู้เล่น: ${data.source9Count}`;
+        document.getElementById('player-count-10').textContent = `จำนวนผู้เล่น: ${data.source10Count}`;
+        document.getElementById('player-count-11').textContent = `จำนวนผู้เล่น: ${data.source11Count}`;
+      } catch (error) {
+        document.getElementById('player-count-4').textContent = `เกิดข้อผิดพลาด: ${error.message}`;
+        document.getElementById('player-count-5').textContent = `เกิดข้อผิดพลาด: ${error.message}`;
+        document.getElementById('player-count-6').textContent = `เกิดข้อผิดพลาด: ${error.message}`;
+        document.getElementById('player-count-7').textContent = `เกิดข้อผิดพลาด: ${error.message}`;
+        document.getElementById('player-count-8').textContent = `เกิดข้อผิดพลาด: ${error.message}`;
+      }
     }
-    
-    function copyIP(ip) {
-      navigator.clipboard.writeText(ip);
-      alert('ที่อยู่ IP ' + ip + ' ถูกคัดลอกไปยังคลิปบอร์ดแล้ว');
-    }
+
+    fetchPlayerCount();
   </script>
 </body>
 </html>
