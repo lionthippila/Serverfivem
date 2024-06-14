@@ -158,7 +158,8 @@ body {
     }
     
     async function fetchPlayerCount() {
-      const url = "http://localhost:3000/players"; // Change to your proxy server URL
+      // const url = "http://localhost:3000/players"; // Change to your proxy server URL
+      const url = "https://server-nodejs-y8pw.onrender.com/players";
       try {
         const response = await fetch(url);
         if (!response.ok) {
