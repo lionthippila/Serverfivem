@@ -100,6 +100,21 @@ body {
 .actions {
   margin-top: 10px;
 }
+
+#player-count-1,
+#player-count-2,
+#player-count-3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  color: #FF5733;
+  font-size: 16px;
+  margin-top: 5px;
+  float: right;
+}
+
+
 </style>
 </head>
 <body>
@@ -111,6 +126,7 @@ body {
     <img src="sakura.jpg" alt="Server Logo">
     <h3>Sakura Town</h3>
     <p>IP: connect 89.38.101.78</p>
+    <p id="player-count-1">จำนวนผู้เล่น: กำลังโหลด...</p>
     <div class="actions">
       <button onclick="connect('fivem://connect/89.38.101.78')">Connect</button>
     </div>
@@ -120,30 +136,48 @@ body {
     <img src="highest.png" alt="Server Logo">
     <h3>Highest Town</h3>
     <p>IP: connect 103.167.193.79:30120</p>
+    <p id="player-count-2">จำนวนผู้เล่น: กำลังโหลด...</p>
     <div class="actions">
       <button onclick="connect('fivem://connect/103.167.193.79:30120')">Connect</button>
     </div>
   </div>
-  
+
   <div class="server">
     <img src="athena.jpg" alt="Server Logo">
     <h3>Athena Town</h3>
     <p>IP: connect athenatown.hopto.org:30120</p>
+    <p id="player-count-3">จำนวนผู้เล่น: กำลังโหลด...</p>
     <div class="actions">
       <button onclick="connect('fivem://connect/athenatown.hopto.org:30120')">Connect</button>
     </div>
   </div>
   
-  
   <script>
     function connect(url) {
       window.location.href = url;
     }
-    
-    function copyIP(ip) {
-      navigator.clipboard.writeText(ip);
-      alert('ที่อยู่ IP ' + ip + ' ถูกคัดลอกไปยังคลิปบอร์ดแล้ว');
+
+    async function fetchPlayerCount() {
+      const url = "https://server-nodejs-y8pw.onrender.com/players"; // Change to your proxy server URL
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        
+        // Update the player counts for each server
+        document.getElementById('player-count-1').textContent = `จำนวนผู้เล่น: ${data.source1Count}`;
+        document.getElementById('player-count-2').textContent = `จำนวนผู้เล่น: ${data.source2Count}`;
+        document.getElementById('player-count-3').textContent = `จำนวนผู้เล่น: ${data.source3Count}`;
+      } catch (error) {
+        document.getElementById('player-count-1').textContent = `เกิดข้อผิดพลาด: ${error.message}`;
+        document.getElementById('player-count-2').textContent = `เกิดข้อผิดพลาด: ${error.message}`;
+        document.getElementById('player-count-3').textContent = `เกิดข้อผิดพลาด: ${error.message}`;
+      }
     }
+
+    fetchPlayerCount();
   </script>
 </body>
 </html>
