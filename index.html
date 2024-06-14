@@ -208,10 +208,11 @@ body {
   </div>
   
   <script>
-    // Your JavaScript code here
-
+    function connect(url) {
+      window.location.href = url;
+    }
     async function fetchPlayerCount() {
-      const url = "https://server-nodejs-y8pw.onrender.com/players"; // Change to your proxy server URL
+      const url = "http://localhost:3000/players"; // Change to your proxy server URL
       try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -229,14 +230,10 @@ body {
         document.getElementById('player-count-10').textContent = `จำนวนผู้เล่น: ${data.source10Count}`;
         document.getElementById('player-count-11').textContent = `จำนวนผู้เล่น: ${data.source11Count}`;
       } catch (error) {
-        document.getElementById('player-count-4').textContent = `เกิดข้อผิดพลาด: ${error.message}`;
-        document.getElementById('player-count-5').textContent = `เกิดข้อผิดพลาด: ${error.message}`;
-        document.getElementById('player-count-6').textContent = `เกิดข้อผิดพลาด: ${error.message}`;
-        document.getElementById('player-count-7').textContent = `เกิดข้อผิดพลาด: ${error.message}`;
-        document.getElementById('player-count-8').textContent = `เกิดข้อผิดพลาด: ${error.message}`;
+        console.error(error);
+        // Handle errors or display a message to the user
       }
     }
-
     fetchPlayerCount();
   </script>
 </body>
